@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Plus+Jakarta+Sans:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100%;margin:0;padding:0;}body{overscroll-behavior-y:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-error-container": "#93000a", "primary": "#984800", "on-tertiary": "#ffffff", "inverse-surface": "#2c303a", "primary-fixed": "#ffdbc8", "on-secondary": "#ffffff", "on-tertiary-fixed-variant": "#930014", "error-container": "#ffdad6", "on-primary": "#ffffff", "outline": "#8b7264", "tertiary": "#b81e26", "surface-variant": "#dfe2ef", "surface-container-highest": "#dfe2ef", "on-primary-fixed-variant": "#733500", "on-surface-variant": "#574236", "surface-container-low": "#f1f3ff", "background": "#f9f9ff", "on-primary-container": "#5e2a00", "secondary-container": "#a1f880", "surface-tint": "#984800", "secondary-fixed": "#a1f880", "on-surface": "#181c24", "primary-fixed-dim": "#ffb689", "surface-container-high": "#e5e8f4", "on-tertiary-container": "#78000e", "inverse-primary": "#ffb689", "tertiary-fixed-dim": "#ffb3ae", "primary-container": "#fc8019", "on-tertiary-fixed": "#410004", "secondary-fixed-dim": "#86db67", "error": "#ba1a1a", "on-secondary-fixed-variant": "#135200", "on-error": "#ffffff", "on-primary-fixed": "#311300", "surface-container": "#ebedfa", "surface-bright": "#f9f9ff", "surface": "#f9f9ff", "tertiary-container": "#ff7973", "outline-variant": "#dec1b0", "surface-dim": "#d7dae6", "surface-container-lowest": "#ffffff", "on-secondary-fixed": "#042100", "inverse-on-surface": "#eef0fd", "on-background": "#181c24", "secondary": "#1d6d00", "tertiary-fixed": "#ffdad7", "on-secondary-container": "#237406" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "margin": "1rem", "space-md": "1rem", "space-lg": "1.5rem", "space-xl": "2rem", "space-sm": "0.5rem", "gutter": "1rem", "space-xs": "0.25rem" }, fontFamily: { "body-lg": ["Inter"], "headline-xl": ["Plus Jakarta Sans"], "body-sm": ["Inter"], "label-lg": ["Inter"], "headline-lg": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "label-md": ["Inter"], "label-sm": ["Inter"], "body-md": ["Inter"], "headline-md": ["Plus Jakarta Sans"] }, fontSize: { "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-xl": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "label-lg": ["14px", { "lineHeight": "18px", "fontWeight": "600" }], "headline-lg": ["24px", { "lineHeight": "30px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "headline-sm": ["16px", { "lineHeight": "22px", "letterSpacing": "-0.005em", "fontWeight": "700" }], "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }], "label-sm": ["10px", { "lineHeight": "12px", "letterSpacing": "0.04em", "fontWeight": "700" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "headline-md": ["20px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "700" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-margin flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0 flex-1"><button aria-label="Back" class="min-h-[44px] min-w-[44px] -ml-2 flex items-center justify-center text-on-surface rounded-full" onclick="history.back()"><span class="material-symbols-outlined text-[24px]">arrow_back</span></button><img alt="Swiggy Brand Logo" class="h-7 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1UfJAX3Asih2T8QFW7NE51G5XS0etLDExiNCT2m3USHyAWKiu4iHgHmEb236a3IA0PyHGf19mMga8aqs7aAhZ7LZkKY-ePVx_439XJfc6_RH6Kxk6TJGgcq79dwborQPTY7XAWaCqypp2Y93WDQg9tsMJf0h6NSuGSe9dxNuTPhlxdBVR-W1wpRygkdYJkTAHsSTEe-ItIF39COteoKJ_yhygC69pgxaebd4yRnD13aNw"/><h1 class="font-headline-sm text-headline-sm text-on-surface truncate">Restaurant Detail</h1></div><div class="flex items-center gap-space-sm flex-shrink-0"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUCZIBRyh4xo3LafiTs4WA0B1erucBY667n_vuIUe42qDf9yIeEiFGtBrrYuTnimlLhkue3nz7eoXmlOJ4CfY9doU5IsvGkMxUPAyeCDpPhEadRIDWvcfDUjCRpvV5A0XjZqmMMisi-P8JawlXRZySs4Xdkqlifvu6_FvRX9ZYxoVf2caL4EWuaf7yE6gAj7fnxZxq6d3bgRWiyIEgA82Yi3efDxtT0Hw1vMu9j32G"/></div></div></header><main class="flex-1 w-full bg-surface pt-16"><div class="flex flex-col w-full pb-24">
+<!-- Top Ambient Glow -->
+<div class="w-full px-margin pt-space-md">
+<!-- Restaurant Header Card -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm relative overflow-hidden">
+<div class="flex justify-between items-start gap-space-sm">
+<div class="min-w-0 flex-1">
+<div class="flex items-center gap-space-xs mb-1">
+<span class="bg-primary-container/15 text-primary-container font-label-sm text-label-sm px-2 py-0.5 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+              PREMIUM PARTNER
+            </span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface truncate">Meghana Foods</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5 truncate">Biryani, North Indian, Andhra, Chinese</p>
+<div class="flex items-center gap-1.5 mt-1 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-primary-container">location_on</span>
+<span class="truncate">Indiranagar, Bengaluru</span>
+<span>•</span>
+<span class="font-label-md text-label-md text-on-surface">2.4 km</span>
+</div>
+</div>
+<div class="flex flex-col items-center gap-1 flex-shrink-0">
+<button aria-label="Add to Favorites" class="w-9 h-9 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface-variant active:scale-95 transition-transform" id="favBtn" onclick="toggleFav()">
+<span class="material-symbols-outlined text-[20px]" id="favIcon">favorite_border</span>
+</button>
+<button aria-label="Share" class="w-9 h-9 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface-variant active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[19px]">share</span>
+</button>
+</div>
+</div>
+<!-- Rating & Delivery Metrics Strip -->
+<div class="bg-surface-container-low rounded-lg p-space-sm flex items-center justify-between text-center gap-2">
+<div class="flex-1 flex flex-col items-center justify-center border-r-0">
+<div class="flex items-center gap-1 text-secondary font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>4.4</span>
+<span class="text-on-surface-variant text-body-sm font-body-sm">(10K+)</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Ratings</span>
+</div>
+<div class="w-px h-6 bg-surface-variant"></div>
+<div class="flex-1 flex flex-col items-center justify-center">
+<div class="flex items-center gap-1 text-on-surface font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-primary-container">schedule</span>
+<span>25-30 mins</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Delivery Time</span>
+</div>
+<div class="w-px h-6 bg-surface-variant"></div>
+<div class="flex-1 flex flex-col items-center justify-center">
+<div class="flex items-center gap-1 text-on-surface font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">currency_rupee</span>
+<span>₹400 for two</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Cost</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Offers Carousel -->
+<div class="w-full mt-space-md overflow-x-auto no-scrollbar pl-margin flex gap-space-sm pr-margin">
+<!-- Offer 1 -->
+<div class="min-w-[260px] max-w-[280px] bg-gradient-to-r from-surface-container-lowest to-surface-container-low rounded-xl p-space-sm shadow-sm flex items-center gap-3 flex-shrink-0">
+<div class="w-10 h-10 rounded-lg bg-primary-container/15 flex items-center justify-center text-primary-container flex-shrink-0">
+<span class="material-symbols-outlined text-[24px]">percent</span>
+</div>
+<div class="min-w-0 flex-1">
+<p class="font-label-md text-label-md text-on-surface font-bold truncate">20% OFF UP TO ₹120</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">USE <span class="text-primary-container font-semibold">MEGHANA20</span> | Min ₹299</p>
+</div>
+</div>
+<!-- Offer 2 -->
+<div class="min-w-[260px] max-w-[280px] bg-gradient-to-r from-surface-container-lowest to-surface-container-low rounded-xl p-space-sm shadow-sm flex items-center gap-3 flex-shrink-0">
+<div class="w-10 h-10 rounded-lg bg-secondary-container/30 flex items-center justify-center text-secondary flex-shrink-0">
+<span class="material-symbols-outlined text-[24px]">payments</span>
+</div>
+<div class="min-w-0 flex-1">
+<p class="font-label-md text-label-md text-on-surface font-bold truncate">FLAT ₹100 CASHBACK</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">Pay using CRED Pay UPI</p>
+</div>
+</div>
+<!-- Offer 3 -->
+<div class="min-w-[240px] max-w-[260px] bg-gradient-to-r from-surface-container-lowest to-surface-container-low rounded-xl p-space-sm shadow-sm flex items-center gap-3 flex-shrink-0">
+<div class="w-10 h-10 rounded-lg bg-tertiary-fixed flex items-center justify-center text-tertiary flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">local_shipping</span>
+</div>
+<div class="min-w-0 flex-1">
+<p class="font-label-md text-label-md text-on-surface font-bold truncate">FREE DELIVERY</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">With Swiggy One on ₹149+</p>
+</div>
+</div>
+</div>
+<!-- Search in Menu -->
+<div class="w-full px-margin mt-space-md">
+<div class="bg-surface-container-lowest rounded-xl flex items-center px-3 h-11 shadow-sm gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">search</span>
+<input class="bg-transparent flex-1 font-body-md text-body-md text-on-surface outline-none placeholder:text-on-surface-variant" id="menuSearch" oninput="filterMenu(this.value)" placeholder="Search in Meghana Foods..." type="text"/>
+<button aria-label="Voice Search" class="text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">mic</span>
+</button>
+</div>
+</div>
+<!-- Dietary & Bestseller Toggles -->
+<div class="w-full px-margin mt-space-md flex items-center gap-2 overflow-x-auto no-scrollbar">
+<!-- Veg Toggle Button -->
+<button class="h-8 px-3 rounded-full bg-surface-container-lowest shadow-sm flex items-center gap-1.5 flex-shrink-0 text-on-surface font-label-md text-label-md active:scale-95 transition-all" id="vegFilter" onclick="toggleDiet('veg')">
+<div class="w-3.5 h-3.5 rounded-[3px] bg-surface-container-lowest flex items-center justify-center p-[2px] shadow-[inset_0_0_0_1.5px_#1d6d00]">
+<div class="w-1.5 h-1.5 rounded-full bg-secondary"></div>
+</div>
+<span>Veg</span>
+</button>
+<!-- Non-Veg Toggle Button -->
+<button class="h-8 px-3 rounded-full bg-surface-container-lowest shadow-sm flex items-center gap-1.5 flex-shrink-0 text-on-surface font-label-md text-label-md active:scale-95 transition-all" id="nonVegFilter" onclick="toggleDiet('non-veg')">
+<div class="w-3.5 h-3.5 rounded-[3px] bg-surface-container-lowest flex items-center justify-center p-[2px] shadow-[inset_0_0_0_1.5px_#ba1a1a]">
+<div class="w-0 h-0 border-l-[3px] border-l-transparent border-r-[3px] border-r-transparent border-b-[5px] border-b-tertiary"></div>
+</div>
+<span>Non-Veg</span>
+</button>
+<!-- Bestseller Filter -->
+<button class="h-8 px-3 rounded-full bg-surface-container-lowest shadow-sm flex items-center gap-1 flex-shrink-0 text-on-surface font-label-md text-label-md active:scale-95 transition-all" id="bestsellerFilter" onclick="toggleFilter('bestseller')">
+<span class="material-symbols-outlined text-[16px] text-primary-container" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span>Bestseller</span>
+</button>
+<!-- Spiciness / Andhra Special Filter -->
+<button class="h-8 px-3 rounded-full bg-surface-container-lowest shadow-sm flex items-center gap-1 flex-shrink-0 text-on-surface font-label-md text-label-md active:scale-95 transition-all" id="spicyFilter" onclick="toggleFilter('spicy')">
+<span class="material-symbols-outlined text-[16px] text-tertiary">local_dining</span>
+<span>Andhra Special</span>
+</button>
+</div>
+<!-- Sticky Horizontal Category Navigation -->
+<div class="sticky top-16 z-40 bg-surface/95 backdrop-blur-md w-full mt-space-md shadow-[0_2px_6px_rgba(0,0,0,0.03)]">
+<div class="flex overflow-x-auto no-scrollbar px-margin py-2 gap-4">
+<button class="cat-pill whitespace-nowrap font-label-md text-label-md text-primary pb-1 relative font-bold" onclick="scrollToCat('cat-recommended')">
+        Recommended (12)
+        <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-primary-container rounded-full"></div>
+</button>
+<button class="cat-pill whitespace-nowrap font-label-md text-label-md text-on-surface-variant pb-1 relative hover:text-on-surface" onclick="scrollToCat('cat-biryanis')">
+        Meghana Special Biryanis (8)
+      </button>
+<button class="cat-pill whitespace-nowrap font-label-md text-label-md text-on-surface-variant pb-1 relative hover:text-on-surface" onclick="scrollToCat('cat-starters')">
+        Starters &amp; Kebabs (15)
+      </button>
+<button class="cat-pill whitespace-nowrap font-label-md text-label-md text-on-surface-variant pb-1 relative hover:text-on-surface" onclick="scrollToCat('cat-main')">
+        Main Course (10)
+      </button>
+<button class="cat-pill whitespace-nowrap font-label-md text-label-md text-on-surface-variant pb-1 relative hover:text-on-surface" onclick="scrollToCat('cat-breads')">
+        Breads &amp; Rice
+      </button>
+</div>
+</div>
+<!-- Menu Content Section -->
+<div class="w-full px-margin mt-space-md flex flex-col gap-space-lg">
+<!-- Category: Recommended -->
+<section class="flex flex-col gap-space-md" id="cat-recommended">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-md text-headline-md text-on-surface">Recommended (12)</h3>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">expand_more</span>
+</div>
+<div class="flex flex-col gap-space-md" id="menu-items-list">
+<!-- Dish Item 1: Meghana Special Chicken Biryani -->
+<article class="menu-item bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex justify-between gap-space-md items-start relative" data-badge="bestseller" data-diet="non-veg">
+<div class="flex-1 min-w-0 flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<!-- Non Veg Indicator -->
+<div class="w-3.5 h-3.5 rounded-[3px] bg-surface-container-lowest flex items-center justify-center p-[2px] shadow-[inset_0_0_0_1.5px_#ba1a1a]">
+<div class="w-0 h-0 border-l-[3px] border-l-transparent border-r-[3px] border-r-transparent border-b-[5px] border-b-tertiary"></div>
+</div>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-sm text-label-sm px-2 py-0.5 rounded-full font-bold">★ BESTSELLER</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mt-0.5">Meghana Special Chicken Biryani</h4>
+<div class="flex items-center gap-1 font-label-lg text-label-lg text-on-surface font-bold">
+<span>₹340</span>
+</div>
+<div class="flex items-center gap-1 mt-0.5 text-secondary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>4.6</span>
+<span class="text-on-surface-variant font-normal">(1.2k)</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mt-1 leading-relaxed">
+              Tender spiced marinated chicken pieces layered with authentically flavored fragrant Andhra basmati rice served with raita and mirchi ka salan.
+            </p>
+</div>
+<!-- Image & Add Stepper Container -->
+<div class="w-28 flex flex-col items-center flex-shrink-0 relative">
+<div class="w-28 h-28 rounded-xl overflow-hidden shadow-sm bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Steaming authentic Andhra Meghana special chicken biryani in a traditional clay handi pot, garnished with crisp fried golden onions, fresh mint leaves, fried cashew nuts, and served with spicy gravy in warm restaurant lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAI4sR3O10fQoszKUQUMNQnL0cU52QX545qJ2ufDsgSGtGc13BhY4QnmNtx1Pl0Fjzpw21yy_EceLhIcwEsRw7nR4vQ-uNgXgGIjAaLaM39vHq9x6FyKX9KuIH1bD0PGxhS9YOSDcoKD8hwS4JLJCc2NNF3MbFEjFJuOWKJk94H2v5iDb8n0PMXxli_v_-a_q8Db1Bne6uaSSiPp6hxnTFbnpQMAjQB9jSCaromMF3D"/>
+</div>
+<!-- Quantity Counter Container -->
+<div class="absolute -bottom-2.5 w-24 z-10 flex flex-col items-center">
+<div class="w-full bg-surface-container-lowest shadow-md rounded-lg h-9 flex items-center justify-between px-2 font-label-md text-label-md text-secondary font-bold" id="btn-dish-1">
+<button aria-label="Decrease quantity" class="w-6 h-6 flex items-center justify-center active:scale-75 text-on-surface-variant" onclick="updateQty(1, -1)">
+<span class="material-symbols-outlined text-[16px]">remove</span>
+</button>
+<span class="text-secondary font-extrabold text-[15px]" id="qty-dish-1">1</span>
+<button aria-label="Increase quantity" class="w-6 h-6 flex items-center justify-center active:scale-75 text-secondary" onclick="updateQty(1, 1)">
+<span class="material-symbols-outlined text-[16px]">add</span>
+</button>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant scale-90 mt-0.5">customizable</span>
+</div>
+</div>
+</article>
+<!-- Dish Item 2: Paneer 65 Biryani -->
+<article class="menu-item bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex justify-between gap-space-md items-start relative" data-badge="none" data-diet="veg">
+<div class="flex-1 min-w-0 flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<!-- Veg Indicator -->
+<div class="w-3.5 h-3.5 rounded-[3px] bg-surface-container-lowest flex items-center justify-center p-[2px] shadow-[inset_0_0_0_1.5px_#1d6d00]">
+<div class="w-1.5 h-1.5 rounded-full bg-secondary"></div>
+</div>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mt-0.5">Paneer 65 Biryani</h4>
+<div class="flex items-center gap-1 font-label-lg text-label-lg text-on-surface font-bold">
+<span>₹310</span>
+</div>
+<div class="flex items-center gap-1 mt-0.5 text-secondary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>4.3</span>
+<span class="text-on-surface-variant font-normal">(680)</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mt-1 leading-relaxed">
+              Spicy aromatic basmati rice tossed with crispy marinated Andhra style cottage cheese cubes and fresh curry leaves.
+            </p>
+</div>
+<div class="w-28 flex flex-col items-center flex-shrink-0 relative">
+<div class="w-28 h-28 rounded-xl overflow-hidden shadow-sm bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Appetizing Paneer 65 Biryani featuring golden fried spiced paneer cubes tossed with fresh green chilies, cilantro, and fragrant long grain basmati rice on a warm rustic platter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVE7g-GExH4XH6ErQRXw979fpK4xmK4M3ytgmP6EMzsA62puNOXcgjwWepyKt3qTZjivQGQJUGjt5EPU9oshQDAlKAcK2SRjp9qNRN7iNlU0nDZMy3yn8vT5F2NS1TrFDBnIfW-Ov0cC08J8b3yCGmyOaHkSGQDokOn9HJZrBuEXd7cagQJU5FcbIPCL6dhbGJi0ExW2s2aeW0sfFKqO1nxBiWcGAKFeUqWf_OCiKN"/>
+</div>
+<div class="absolute -bottom-2.5 w-24 z-10 flex flex-col items-center">
+<button class="w-full bg-surface-container-lowest shadow-md rounded-lg h-9 flex items-center justify-center gap-1 font-label-md text-label-md text-secondary font-extrabold hover:bg-surface-container-low active:scale-95 transition-all" id="add-dish-2" onclick="initAdd(2, 310, 'Paneer 65 Biryani')">
+<span>ADD</span>
+<span class="material-symbols-outlined text-[16px]">add</span>
+</button>
+<span class="font-label-sm text-label-sm text-on-surface-variant scale-90 mt-0.5">customizable</span>
+</div>
+</div>
+</article>
+<!-- Dish Item 3: Andhra Chilli Chicken -->
+<article class="menu-item bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex justify-between gap-space-md items-start relative" data-badge="bestseller" data-diet="non-veg">
+<div class="flex-1 min-w-0 flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<!-- Non Veg Indicator -->
+<div class="w-3.5 h-3.5 rounded-[3px] bg-surface-container-lowest flex items-center justify-center p-[2px] shadow-[inset_0_0_0_1.5px_#ba1a1a]">
+<div class="w-0 h-0 border-l-[3px] border-l-transparent border-r-[3px] border-r-transparent border-b-[5px] border-b-tertiary"></div>
+</div>
+<span class="bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm px-2 py-0.5 rounded-full font-bold">MUST TRY</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mt-0.5">Andhra Chilli Chicken</h4>
+<div class="flex items-center gap-1 font-label-lg text-label-lg text-on-surface font-bold">
+<span>₹290</span>
+</div>
+<div class="flex items-center gap-1 mt-0.5 text-secondary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>4.7</span>
+<span class="text-on-surface-variant font-normal">(2.1k)</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mt-1 leading-relaxed">
+              Fiery green chili marinated bite-sized chicken pieces flash-fried with fresh curry leaves and crushed Andhra peppercorns.
+            </p>
+</div>
+<div class="w-28 flex flex-col items-center flex-shrink-0 relative">
+<div class="w-28 h-28 rounded-xl overflow-hidden shadow-sm bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Crispy succulent Andhra style green chilli chicken tossed in a spicy green chili paste with crisp curry leaves on a modern dark slate plate with lemon wedge" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBG03Sf_FM0PfbKLkUK9_KTJiphm8FEZev347fpjHqACdM2Q6yNDNrIrDJlTYGhXOw0ho05J7j7aNnj4U2id1ShU_bfFRHC2eBXJMGyljgIXCPKYWgNWEP0Gi8EHbbXfSkKK7FsvHwEqUZOgAZQ5siEbFrbCypmBbSwZoMxEeDFXz30vAXh8BqFleW2PK9waQiLiUyDI1k4JXF1JAnZlUo2BheQ1HBUqcYDwBwl-Rcq"/>
+</div>
+<div class="absolute -bottom-2.5 w-24 z-10 flex flex-col items-center">
+<button class="w-full bg-surface-container-lowest shadow-md rounded-lg h-9 flex items-center justify-center gap-1 font-label-md text-label-md text-secondary font-extrabold hover:bg-surface-container-low active:scale-95 transition-all" id="add-dish-3" onclick="initAdd(3, 290, 'Andhra Chilli Chicken')">
+<span>ADD</span>
+<span class="material-symbols-outlined text-[16px]">add</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Dish Item 4: Mutton Boneless Biryani -->
+<article class="menu-item bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex justify-between gap-space-md items-start relative" data-badge="bestseller" data-diet="non-veg">
+<div class="flex-1 min-w-0 flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<div class="w-3.5 h-3.5 rounded-[3px] bg-surface-container-lowest flex items-center justify-center p-[2px] shadow-[inset_0_0_0_1.5px_#ba1a1a]">
+<div class="w-0 h-0 border-l-[3px] border-l-transparent border-r-[3px] border-r-transparent border-b-[5px] border-b-tertiary"></div>
+</div>
+<span class="bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm px-2 py-0.5 rounded-full font-bold">CHEF'S SPECIAL</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mt-0.5">Mutton Boneless Biryani</h4>
+<div class="flex items-center gap-1 font-label-lg text-label-lg text-on-surface font-bold">
+<span>₹440</span>
+</div>
+<div class="flex items-center gap-1 mt-0.5 text-secondary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>4.5</span>
+<span class="text-on-surface-variant font-normal">(920)</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mt-1 leading-relaxed">
+              Rich succulent tender mutton boneless chunks cooked in authentic Andhra spices, layered with royal saffron basmati rice.
+            </p>
+</div>
+<div class="w-28 flex flex-col items-center flex-shrink-0 relative">
+<div class="w-28 h-28 rounded-xl overflow-hidden shadow-sm bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Exquisite royal boneless mutton biryani served in an earthen bowl garnished with saffron strands, caramelized fried onions, and coriander sprigs with steam rising" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBx3WurL0VQbZ8djFKNJICsRuSaSMN5z5Pox_bKjsokUmHXrUw8L9tI_0hWyO85msCZkvrKP-zVJT25Kd2XQYWyfRhk02OyVvrDfIvi2G9O-GaXE5DMCJkPQtmNxAgipS_DQJspP6TFncxZDSm4BddGHydMmYgUhO844K2ejGotEfcpAHp_cKFtpeixtztg3JOW9xo2tPPgTg3-O68Ot81IngeJD4WjJjIIOevPMEBk"/>
+</div>
+<div class="absolute -bottom-2.5 w-24 z-10 flex flex-col items-center">
+<button class="w-full bg-surface-container-lowest shadow-md rounded-lg h-9 flex items-center justify-center gap-1 font-label-md text-label-md text-secondary font-extrabold hover:bg-surface-container-low active:scale-95 transition-all" id="add-dish-4" onclick="initAdd(4, 440, 'Mutton Boneless Biryani')">
+<span>ADD</span>
+<span class="material-symbols-outlined text-[16px]">add</span>
+</button>
+<span class="font-label-sm text-label-sm text-on-surface-variant scale-90 mt-0.5">customizable</span>
+</div>
+</div>
+</article>
+<!-- Dish Item 5: Garlic Butter Naan -->
+<article class="menu-item bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex justify-between gap-space-md items-start relative" data-badge="none" data-diet="veg">
+<div class="flex-1 min-w-0 flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<div class="w-3.5 h-3.5 rounded-[3px] bg-surface-container-lowest flex items-center justify-center p-[2px] shadow-[inset_0_0_0_1.5px_#1d6d00]">
+<div class="w-1.5 h-1.5 rounded-full bg-secondary"></div>
+</div>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mt-0.5">Garlic Butter Naan</h4>
+<div class="flex items-center gap-1 font-label-lg text-label-lg text-on-surface font-bold">
+<span>₹65</span>
+</div>
+<div class="flex items-center gap-1 mt-0.5 text-secondary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>4.4</span>
+<span class="text-on-surface-variant font-normal">(410)</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mt-1 leading-relaxed">
+              Soft clay oven baked leavened flatbread brushed with garlic-infused butter and fresh coriander.
+            </p>
+</div>
+<div class="w-28 flex flex-col items-center flex-shrink-0 relative">
+<div class="w-28 h-28 rounded-xl overflow-hidden shadow-sm bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Freshly baked hot garlic butter naan with blistered golden crust brushed with glistening melted butter and chopped garlic, stacked in a woven basket" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCq9faB-vcz7q4Hi4tXv6E7m8LKEzcr_26cFylPQbv3VLIMleO0fYZfngdkBnjA_dnYJE6ZQwKevC8x7JUAX-hIZpmtFzgbrN8OtErXMt5_kQ__xDCpANu52nlmFb02bXoizdE5ven7MZVhAYxHcADE8s5-gLFtEjCON6prxpU-0_Nqyqs_Dlnk9itJmfry7ct-sevPFK4ebxa-lA-KKfThMcdxC_mALaZaVyKk9WFW"/>
+</div>
+<div class="absolute -bottom-2.5 w-24 z-10 flex flex-col items-center">
+<button class="w-full bg-surface-container-lowest shadow-md rounded-lg h-9 flex items-center justify-center gap-1 font-label-md text-label-md text-secondary font-extrabold hover:bg-surface-container-low active:scale-95 transition-all" id="add-dish-5" onclick="initAdd(5, 65, 'Garlic Butter Naan')">
+<span>ADD</span>
+<span class="material-symbols-outlined text-[16px]">add</span>
+</button>
+</div>
+</div>
+</article>
+</div>
+</section>
+<!-- FSSAI License & Hygiene Safety Footnote -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-2">
+<div class="flex items-center gap-3">
+<span class="font-headline-sm text-headline-sm text-on-surface-variant font-bold">fssai</span>
+<div class="w-px h-4 bg-surface-variant"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">License No. 11219333000421</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        Meghana Foods, 100ft Road, HAL 2nd Stage, Indiranagar, Bengaluru, Karnataka 560038
+      </p>
+</div>
+</div>
+<!-- Floating Sticky Bottom Bar for Cart Checkout -->
+<aside class="fixed bottom-3 inset-x-margin max-w-md mx-auto z-50 transition-all duration-300 transform translate-y-0" id="stickyCartDock">
+<div class="bg-primary-container text-on-primary rounded-xl h-14 px-space-md shadow-xl flex items-center justify-between cursor-pointer active:scale-[0.99] transition-transform">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-semibold tracking-wide uppercase text-on-primary/90" id="cartCountSummary">1 ITEM ADDED</span>
+<span class="font-headline-sm text-headline-sm font-bold text-on-primary" id="cartPriceSummary">₹340 <span class="font-body-sm text-body-sm text-on-primary/80 font-normal">plus taxes</span></span>
+</div>
+<div class="flex items-center gap-1 font-headline-sm text-headline-sm text-on-primary font-bold">
+<span>VIEW CART</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</div>
+</div>
+</aside>
+</div>
+<script>
+  let cart = {
+    items: {
+      1: { name: 'Meghana Special Chicken Biryani', price: 340, qty: 1 }
+    }
+  };
+
+  let activeDiet = null;
+  let activeFilter = null;
+  let isFavorite = false;
+
+  function toggleFav() {
+    isFavorite = !isFavorite;
+    const icon = document.getElementById('favIcon');
+    if (isFavorite) {
+      icon.innerText = 'favorite';
+      icon.style.fontVariationSettings = "'FILL' 1";
+      icon.classList.add('text-tertiary');
+    } else {
+      icon.innerText = 'favorite_border';
+      icon.style.fontVariationSettings = "'FILL' 0";
+      icon.classList.remove('text-tertiary');
+    }
+  }
+
+  function initAdd(id, price, name) {
+    if (!cart.items[id]) {
+      cart.items[id] = { name: name, price: price, qty: 1 };
+    } else {
+      cart.items[id].qty += 1;
+    }
+    renderStepper(id);
+    updateCartUI();
+  }
+
+  function updateQty(id, delta) {
+    if (cart.items[id]) {
+      cart.items[id].qty += delta;
+      if (cart.items[id].qty <= 0) {
+        delete cart.items[id];
+        renderAddButton(id);
+      } else {
+        const qtyEl = document.getElementById('qty-dish-' + id);
+        if (qtyEl) qtyEl.innerText = cart.items[id].qty;
+      }
+    }
+    updateCartUI();
+  }
+
+  function renderStepper(id) {
+    const parentContainer = document.querySelector('#add-dish-' + id)?.parentElement;
+    if (!parentContainer) return;
+    parentContainer.innerHTML = `
+      <div id="btn-dish-${id}" class="w-full bg-surface-container-lowest shadow-md rounded-lg h-9 flex items-center justify-between px-2 font-label-md text-label-md text-secondary font-bold">
+        <button onclick="updateQty(${id}, -1)" class="w-6 h-6 flex items-center justify-center active:scale-75 text-on-surface-variant" aria-label="Decrease quantity">
+          <span class="material-symbols-outlined text-[16px]">remove</span>
+        </button>
+        <span id="qty-dish-${id}" class="text-secondary font-extrabold text-[15px]">${cart.items[id].qty}</span>
+        <button onclick="updateQty(${id}, 1)" class="w-6 h-6 flex items-center justify-center active:scale-75 text-secondary" aria-label="Increase quantity">
+          <span class="material-symbols-outlined text-[16px]">add</span>
+        </button>
+      </div>
+      <span class="font-label-sm text-label-sm text-on-surface-variant scale-90 mt-0.5">customizable</span>
+    `;
+  }
+
+  function renderAddButton(id) {
+    const parentContainer = document.querySelector('#btn-dish-' + id)?.parentElement;
+    if (!parentContainer) return;
+    const metaPrices = { 1: 340, 2: 310, 3: 290, 4: 440, 5: 65 };
+    const metaNames = {
+      1: 'Meghana Special Chicken Biryani',
+      2: 'Paneer 65 Biryani',
+      3: 'Andhra Chilli Chicken',
+      4: 'Mutton Boneless Biryani',
+      5: 'Garlic Butter Naan'
+    };
+    parentContainer.innerHTML = `
+      <button id="add-dish-${id}" onclick="initAdd(${id}, ${metaPrices[id]}, '${metaNames[id]}')" class="w-full bg-surface-container-lowest shadow-md rounded-lg h-9 flex items-center justify-center gap-1 font-label-md text-label-md text-secondary font-extrabold hover:bg-surface-container-low active:scale-95 transition-all">
+        <span>ADD</span>
+        <span class="material-symbols-outlined text-[16px]">add</span>
+      </button>
+      ${id === 1 || id === 2 || id === 4 ? '<span class="font-label-sm text-label-sm text-on-surface-variant scale-90 mt-0.5">customizable</span>' : ''}
+    `;
+  }
+
+  function updateCartUI() {
+    let totalQty = 0;
+    let totalPrice = 0;
+    for (let k in cart.items) {
+      totalQty += cart.items[k].qty;
+      totalPrice += cart.items[k].price * cart.items[k].qty;
+    }
+
+    const dock = document.getElementById('stickyCartDock');
+    const countEl = document.getElementById('cartCountSummary');
+    const priceEl = document.getElementById('cartPriceSummary');
+
+    if (totalQty > 0) {
+      dock.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+      countEl.innerText = `${totalQty} ITEM${totalQty > 1 ? 'S' : ''} ADDED`;
+      priceEl.innerHTML = `₹${totalPrice} <span class="font-body-sm text-body-sm text-on-primary/80 font-normal">plus taxes</span>`;
+    } else {
+      dock.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+    }
+  }
+
+  function toggleDiet(diet) {
+    const vegBtn = document.getElementById('vegFilter');
+    const nonVegBtn = document.getElementById('nonVegFilter');
+
+    if (activeDiet === diet) {
+      activeDiet = null;
+      vegBtn.classList.remove('bg-secondary', 'text-on-secondary');
+      nonVegBtn.classList.remove('bg-tertiary', 'text-on-tertiary');
+      vegBtn.classList.add('bg-surface-container-lowest', 'text-on-surface');
+      nonVegBtn.classList.add('bg-surface-container-lowest', 'text-on-surface');
+    } else {
+      activeDiet = diet;
+      if (diet === 'veg') {
+        vegBtn.classList.add('bg-secondary', 'text-on-secondary');
+        vegBtn.classList.remove('bg-surface-container-lowest', 'text-on-surface');
+        nonVegBtn.classList.remove('bg-tertiary', 'text-on-tertiary');
+        nonVegBtn.classList.add('bg-surface-container-lowest', 'text-on-surface');
+      } else {
+        nonVegBtn.classList.add('bg-tertiary', 'text-on-tertiary');
+        nonVegBtn.classList.remove('bg-surface-container-lowest', 'text-on-surface');
+        vegBtn.classList.remove('bg-secondary', 'text-on-secondary');
+        vegBtn.classList.add('bg-surface-container-lowest', 'text-on-surface');
+      }
+    }
+    applyAllFilters();
+  }
+
+  function toggleFilter(filterName) {
+    const btn = document.getElementById(filterName + 'Filter');
+    if (activeFilter === filterName) {
+      activeFilter = null;
+      btn.classList.remove('bg-inverse-surface', 'text-inverse-on-surface');
+      btn.classList.add('bg-surface-container-lowest', 'text-on-surface');
+    } else {
+      if (activeFilter) {
+        const prev = document.getElementById(activeFilter + 'Filter');
+        if (prev) {
+          prev.classList.remove('bg-inverse-surface', 'text-inverse-on-surface');
+          prev.classList.add('bg-surface-container-lowest', 'text-on-surface');
+        }
+      }
+      activeFilter = filterName;
+      btn.classList.add('bg-inverse-surface', 'text-inverse-on-surface');
+      btn.classList.remove('bg-surface-container-lowest', 'text-on-surface');
+    }
+    applyAllFilters();
+  }
+
+  function filterMenu(query) {
+    applyAllFilters(query.toLowerCase().trim());
+  }
+
+  function applyAllFilters(searchQuery = '') {
+    const items = document.querySelectorAll('.menu-item');
+    items.forEach(item => {
+      const itemDiet = item.getAttribute('data-diet');
+      const itemBadge = item.getAttribute('data-badge');
+      const itemTitle = item.querySelector('h4').innerText.toLowerCase();
+
+      let matchesDiet = !activeDiet || itemDiet === activeDiet;
+      let matchesFilter = !activeFilter || (activeFilter === 'bestseller' && itemBadge === 'bestseller');
+      let matchesQuery = !searchQuery || itemTitle.includes(searchQuery);
+
+      if (matchesDiet && matchesFilter && matchesQuery) {
+        item.style.display = 'flex';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+
+  function scrollToCat(id) {
+    const target = document.getElementById(id);
+    if (target) {
+      window.scrollTo({
+        top: target.offsetTop - 120,
+        behavior: 'smooth'
+      });
+    }
+  }
+</script></main></body></html>

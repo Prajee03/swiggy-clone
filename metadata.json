@@ -1,0 +1,6 @@
+{
+  "name": "Swiggy Food & Instamart",
+  "description": "Hyperlocal food delivery, 10-minute Instamart groceries, Dineout table reservations, and live GPS order tracking.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
