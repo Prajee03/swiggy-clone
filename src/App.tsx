@@ -85,7 +85,10 @@ export default function App() {
     try {
       const saved = window.localStorage.getItem(CART_STORAGE_KEY);
       if (saved) {
-        return JSON.parse(saved) as CartItem[];
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) {
+          return parsed as CartItem[];
+        }
       }
     } catch {
       // ignore storage errors

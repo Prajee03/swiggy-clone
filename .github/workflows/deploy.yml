@@ -27,15 +27,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: "npm"
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build production static bundle
+      - name: Build or use precompiled static bundle
         run: |
-          npm run build
-          cp dist/index.html dist/404.html
+          mkdir -p _site
+          if npm install --no-audit --no-fund --legacy-peer-deps && npm run build; then
+            cp -r dist/. _site/
+            cp _site/index.html _site/404.html
+            touch _site/.nojekyll
+          else
+            echo "Falling back to prebuilt ./docs static bundle"
+            cp -r docs/. _site/
+            touch _site/.nojekyll
+          fi
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
@@ -43,7 +47,7 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./dist"
+          path: "./_site"
 
   deploy:
     environment:

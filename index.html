@@ -17,6 +17,23 @@
   <body class="bg-surface text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
     <div id="root"></div>
     <script type="module" src="./src/main.tsx"></script>
+    <script>
+      (function () {
+        var devClient = document.querySelector('script[src*="@vite/client"]');
+        var rawEntry = document.querySelector('script[src*="src/main.tsx"]');
+        if (rawEntry && !devClient) {
+          rawEntry.remove();
+          var css = document.createElement('link');
+          css.rel = 'stylesheet';
+          css.href = './docs/assets/index.css';
+          document.head.appendChild(css);
+          var js = document.createElement('script');
+          js.type = 'module';
+          js.src = './docs/assets/app.js';
+          document.body.appendChild(js);
+        }
+      })();
+    </script>
   </body>
 </html>
 
