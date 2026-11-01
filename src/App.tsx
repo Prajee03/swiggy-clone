@@ -18,6 +18,7 @@ import type {
   SavedAddress,
 } from './types';
 import { DEFAULT_ADDRESSES, DISH_IMAGES, RESTAURANTS } from './data/catalog';
+import { appApi } from './services/api';
 import { Header } from './components/Header';
 import { BottomNav } from './components/BottomNav';
 import { HomeView } from './components/HomeView';
@@ -143,29 +144,23 @@ export default function App() {
     }
   }, [appliedCoupon]);
 
-  // Bootstrap server state on load
+  // Bootstrap server or static state on load
   useEffect(() => {
-    fetch('/api/bootstrap')
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data) => {
-        if (!data) return;
-        if (Array.isArray(data.favorites)) setFavorites(data.favorites);
-        if (Array.isArray(data.addresses) && data.addresses.length > 0) {
-          setAddresses(data.addresses);
-        }
-        if (data.selectedAddressId) setSelectedAddressId(data.selectedAddressId);
-        if (Array.isArray(data.orders)) {
-          setOrders(data.orders);
-          const inFlight = data.orders.find((o: OrderRecord) => o.status !== 'delivered');
-          if (inFlight) setTrackedOrderId(inFlight.id);
-          else if (data.orders[0]) setTrackedOrderId(data.orders[0].id);
-        }
-        if (Array.isArray(data.dineoutBookings)) setDineoutBookings(data.dineoutBookings);
-        if (Array.isArray(data.genieBookings)) setGenieBookings(data.genieBookings);
-      })
-      .catch(() => {
-        // Offline resilience
-      });
+    appApi.bootstrap().then((data) => {
+      if (Array.isArray(data.favorites)) setFavorites(data.favorites);
+      if (Array.isArray(data.addresses) && data.addresses.length > 0) {
+        setAddresses(data.addresses);
+      }
+      if (data.selectedAddressId) setSelectedAddressId(data.selectedAddressId);
+      if (Array.isArray(data.orders)) {
+        setOrders(data.orders);
+        const inFlight = data.orders.find((o: OrderRecord) => o.status !== 'delivered');
+        if (inFlight) setTrackedOrderId(inFlight.id);
+        else if (data.orders[0]) setTrackedOrderId(data.orders[0].id);
+      }
+      if (Array.isArray(data.dineoutBookings)) setDineoutBookings(data.dineoutBookings);
+      if (Array.isArray(data.genieBookings)) setGenieBookings(data.genieBookings);
+    });
   }, []);
 
   const activeOrder = useMemo(() => {
@@ -179,17 +174,9 @@ export default function App() {
   useEffect(() => {
     if (!activeOrder || activeOrder.status === 'delivered') return;
     const timer = window.setInterval(async () => {
-      try {
-        const res = await fetch(`/api/orders/${activeOrder.id}`);
-        if (!res.ok) return;
-        const payload = await res.json();
-        if (payload?.order) {
-          setOrders((prev) =>
-            prev.map((o) => (o.id === payload.order.id ? payload.order : o)),
-          );
-        }
-      } catch {
-        // ignore transient network errors
+      const updated = await appApi.pollOrder(activeOrder.id);
+      if (updated) {
+        setOrders((prev) => prev.map((o) => (o.id === updated.id ? updated : o)));
       }
     }, 5000);
     return () => window.clearInterval(timer);
@@ -236,19 +223,8 @@ export default function App() {
         : `Saved ${rest?.name || 'restaurant'} to favorites`,
     );
 
-    try {
-      const res = await fetch('/api/favorites/toggle', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ restaurantId }),
-      });
-      if (res.ok) {
-        const data = await res.json();
-        if (Array.isArray(data.favorites)) setFavorites(data.favorites);
-      }
-    } catch {
-      // keep optimistic update
-    }
+    const updatedFavs = await appApi.toggleFavorite(restaurantId);
+    setFavorites(updatedFavs);
   };
 
   const commitItemToCart = (newItem: CartItem, replaceExisting = false) => {
@@ -391,85 +367,53 @@ export default function App() {
         ? 'Indiranagar Hub'
         : RESTAURANTS.find((r) => r.id === first.restaurantId)?.locality || 'Indiranagar';
 
-    const res = await fetch('/api/orders', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        source: first.source,
-        restaurantId: first.restaurantId,
-        restaurantName: first.restaurantName,
-        restaurantLocality: restLocality,
-        items: cart,
-        ...checkoutPayload,
-        deliveryAddress: selectedAddress,
-      }),
+    const created = await appApi.createOrder({
+      source: first.source,
+      restaurantId: first.restaurantId,
+      restaurantName: first.restaurantName,
+      restaurantLocality: restLocality,
+      items: cart,
+      ...checkoutPayload,
+      deliveryAddress: selectedAddress,
     });
 
-    if (res.ok) {
-      const data = await res.json();
-      if (data?.order) {
-        setOrders((prev) => [data.order, ...prev]);
-        setTrackedOrderId(data.order.id);
-        setCart([]);
-        showToast(`Order #${data.order.orderNumber} confirmed!`);
-        navigateTo('tracking');
-      }
-    } else {
-      showToast('Unable to place order right now. Please retry.');
-    }
+    setOrders((prev) => [created, ...prev]);
+    setTrackedOrderId(created.id);
+    setCart([]);
+    showToast(`Order #${created.orderNumber} confirmed!`);
+    navigateTo('tracking');
   };
 
   const handleAdvanceOrderStep = async (orderId: string) => {
-    const res = await fetch(`/api/orders/${orderId}/advance`, { method: 'POST' });
-    if (res.ok) {
-      const data = await res.json();
-      if (data?.order) {
-        setOrders((prev) => prev.map((o) => (o.id === orderId ? data.order : o)));
-        showToast(
-          data.order.status === 'delivered'
-            ? 'Order delivered at your doorstep!'
-            : 'Updated live order progress',
-        );
-      }
+    const updated = await appApi.advanceOrder(orderId);
+    if (updated) {
+      setOrders((prev) => prev.map((o) => (o.id === orderId ? updated : o)));
+      showToast(
+        updated.status === 'delivered'
+          ? 'Order delivered at your doorstep!'
+          : 'Updated live order progress',
+      );
     }
   };
 
   const handleAddRiderTip = async (orderId: string, amount: number) => {
-    const res = await fetch(`/api/orders/${orderId}/tip`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ amount }),
-    });
-    if (res.ok) {
-      const data = await res.json();
-      if (data?.order) {
-        setOrders((prev) => prev.map((o) => (o.id === orderId ? data.order : o)));
-        showToast(`Added ₹${amount} tip for ${data.order.rider.name}`);
-      }
+    const updated = await appApi.tipRider(orderId, amount);
+    if (updated) {
+      setOrders((prev) => prev.map((o) => (o.id === orderId ? updated : o)));
+      showToast(`Added ₹${amount} tip for ${updated.rider.name}`);
     }
   };
 
   const handleSendRiderMessage = async (orderId: string, text: string) => {
-    const res = await fetch(`/api/orders/${orderId}/chat`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text }),
-    });
-    if (res.ok) {
-      const data = await res.json();
-      if (data?.order) {
-        setOrders((prev) => prev.map((o) => (o.id === orderId ? data.order : o)));
-      }
+    const updated = await appApi.sendChat(orderId, text);
+    if (updated) {
+      setOrders((prev) => prev.map((o) => (o.id === orderId ? updated : o)));
     }
   };
 
   const handleSelectAddress = async (addressId: string) => {
     setSelectedAddressId(addressId);
-    await fetch('/api/addresses/select', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ addressId }),
-    });
+    await appApi.selectAddress(addressId);
     showToast('Updated delivery address');
   };
 
@@ -478,17 +422,10 @@ export default function App() {
     shortArea: string;
     fullAddress: string;
   }) => {
-    const res = await fetch('/api/addresses', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
-    if (res.ok) {
-      const data = await res.json();
-      setAddresses(data.addresses);
-      setSelectedAddressId(data.selectedAddressId);
-      showToast(`Saved ${payload.label} address`);
-    }
+    const data = await appApi.addAddress(payload);
+    setAddresses(data.addresses);
+    setSelectedAddressId(data.selectedAddressId);
+    showToast(`Saved ${payload.label} address`);
   };
 
   const handleBookDineout = async (payload: {
@@ -497,24 +434,17 @@ export default function App() {
     timeSlot: string;
     guests: number;
   }) => {
-    const res = await fetch('/api/dineout/book', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        venueId: payload.venue.id,
-        venueName: payload.venue.name,
-        locality: payload.venue.locality,
-        dateLabel: payload.dateLabel,
-        timeSlot: payload.timeSlot,
-        guests: payload.guests,
-        discountOffer: payload.venue.discountOffer,
-      }),
+    const data = await appApi.bookDineout({
+      venueId: payload.venue.id,
+      venueName: payload.venue.name,
+      locality: payload.venue.locality,
+      dateLabel: payload.dateLabel,
+      timeSlot: payload.timeSlot,
+      guests: payload.guests,
+      discountOffer: payload.venue.discountOffer,
     });
-    if (res.ok) {
-      const data = await res.json();
-      setDineoutBookings(data.dineoutBookings);
-      showToast(`Table reserved at ${payload.venue.name} (#${data.booking.confirmationCode})`);
-    }
+    setDineoutBookings(data.dineoutBookings);
+    showToast(`Table reserved at ${payload.venue.name} (#${data.booking.confirmationCode})`);
   };
 
   const handleBookGenie = async (payload: {
@@ -524,16 +454,9 @@ export default function App() {
     distanceKm: number;
     estimatedFare: number;
   }) => {
-    const res = await fetch('/api/genie/book', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
-    if (res.ok) {
-      const data = await res.json();
-      setGenieBookings(data.genieBookings);
-      showToast('Genie delivery partner assigned!');
-    }
+    const data = await appApi.bookGenie(payload);
+    setGenieBookings(data.genieBookings);
+    showToast('Genie delivery partner assigned!');
   };
 
   const handleReorder = (ord: OrderRecord) => {
@@ -546,19 +469,12 @@ export default function App() {
     orderId: string,
     payload: Omit<OrderRating, 'submittedAt'>,
   ) => {
-    const res = await fetch(`/api/orders/${orderId}/rate`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
-    if (res.ok) {
-      const data = await res.json();
-      if (data?.order) {
-        setOrders((prev) => prev.map((o) => (o.id === orderId ? data.order : o)));
-        showToast(
-          `Rated ${data.order.restaurantName} (${payload.restaurantStars}★) & ${data.order.rider.name} (${payload.riderStars}★)`,
-        );
-      }
+    const updated = await appApi.rateOrder(orderId, payload);
+    if (updated) {
+      setOrders((prev) => prev.map((o) => (o.id === orderId ? updated : o)));
+      showToast(
+        `Rated ${updated.restaurantName} (${payload.restaurantStars}★) & ${updated.rider.name} (${payload.riderStars}★)`,
+      );
     } else {
       showToast('Could not save rating right now. Please retry.');
     }
